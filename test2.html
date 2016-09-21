@@ -1,0 +1,276 @@
+
+<html>
+<head>
+<title>Ositcom Live Help</title>
+<style type="text/css">
+    #panel,#flip
+    {
+        padding:5px;text-align:center;background-color:#e5eecc;border:solid 1px #c3c3c3;
+    }
+    #panel
+    {
+        padding:50px;display:none;
+    }
+    .toppending
+    {
+        font-size:11px; font-family:Verdana;
+    }
+</style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script  type="text/javascript" src="http://ajax.googleapis.com/ajax/
+libs/jquery/1.3.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var auto_refresh = setInterval(
+            function ()
+            {
+                $('#content').load('statusadmin.php').fadeIn("slow");
+            }, 10000); // refresh every 10000 milliseconds
+</script>
+<script type="text/javascript">
+    var auto_refresh = setInterval(
+            function ()
+            {
+                $('#content2xx').load('statuspicadmin.php').fadeIn("slow");
+            }, 10000); // refresh every 10000 milliseconds
+</script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function playsound()
+    {
+        $('<audio id="chatAudio"><source src="notify.ogg" type="audio/ogg"><source src="notify.mp3" type="audio/mpeg"><source src="notify.wav" type="audio/wav"></audio>').appendTo('body');
+
+        $('#chatAudio')[0].play();
+    }
+</script>
+<style type="text/css" media="screen">
+    .chat_time {
+        font-style: italic;
+        font-size: 9px;
+    }
+</style>
+<script language="JavaScript" type="text/javascript">
+//    var sendReq = getXmlHttpRequestObject();
+//    var receiveReq = getXmlHttpRequestObject();
+//    var lastMessage = 0;
+//    var mTimer;
+//    //Function for initializating the page.
+//    function startChat() {
+//        //Set the focus to the Message Box.
+//        document.getElementById('txt_message').focus();
+//        //Start Recieving Messages.
+//        getChatText();
+//    }
+//    //Gets the browser specific XmlHttpRequest Object
+//    function getXmlHttpRequestObject() {
+//        if (window.XMLHttpRequest) {
+//            return new XMLHttpRequest();
+//        } else if(window.ActiveXObject) {
+//            return new ActiveXObject("Microsoft.XMLHTTP");
+//        } else {
+//            document.getElementById('p_status').innerHTML = 'Status: Cound not create XmlHttpRequest Object.  Consider upgrading your browser.';
+//        }
+//    }
+
+    //Gets the current messages from the server
+//    function getChatText() {
+//        if (receiveReq.readyState == 4 || receiveReq.readyState == 0) {
+//            receiveReq.open("GET", 'getChat.php?chat=4d337b537f5868c145780f305e81337b&last=' + lastMessage, true);
+//            receiveReq.onreadystatechange = handleReceiveChat;
+//            receiveReq.send(null);
+//        }
+//    }
+
+    //Add a message to the chat server.
+//    function sendChatText() {
+//        if(document.getElementById('txt_message').value == '') {
+//            alert("You have not entered a message");
+//            return;
+//        }
+//        if (sendReq.readyState == 4 || sendReq.readyState == 0) {
+//            sendReq.open("POST", 'getChat.php?chat=4d337b537f5868c145780f305e81337b&last=' + lastMessage, true);
+//            sendReq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+//            sendReq.onreadystatechange = handleSendChat;
+//            var param = 'message=' + document.getElementById('txt_message').value;
+//            param += '&name=Ryan Smith';
+//            param += '&chat=1';
+//            param += '&namer='+ document.getElementById('namer').value;
+//            param += '&sess='+ document.getElementById('sess').value;
+//            sendReq.send(param);
+//            document.getElementById('txt_message').value = '';
+//        }
+//
+//    }
+//    //When our message has been sent, update our page.
+//    function handleSendChat() {
+//        //Clear out the existing timer so we don't have
+//        //multiple timer instances running.
+//        clearInterval(mTimer);
+//        getChatText();
+//    }
+    //Function for handling the return of chat text
+    function handleReceiveChat() {
+        if (receiveReq.readyState == 4) {
+            var chat_div = document.getElementById('div_chat');
+            var xmldoc = receiveReq.responseXML;
+            var message_nodes = xmldoc.getElementsByTagName("message");
+            var n_messages = message_nodes.length
+            for (i = 0; i < n_messages; i++) {
+                var user_node = message_nodes[i].getElementsByTagName("user");
+                var text_node = message_nodes[i].getElementsByTagName("text");
+                var time_node = message_nodes[i].getElementsByTagName("time");
+                chat_div.innerHTML += '<div style="float:left; width:80%;"><font style="font-family:Arial; font-size:12px; color:#F26926; font-weight:bold;">'+user_node[0].firstChild.nodeValue + '</font></div>&nbsp;';
+                chat_div.innerHTML += '<font class="chat_time" style="float:right; margin-right:20px; display:inline; color:#ebc04d">' + time_node[0].firstChild.nodeValue + '</font><br />';
+                chat_div.innerHTML += '<div style="float:left; width:80%;"><font style="font-family:Arial; font-size:12px; color:#000;margin:5px; ">'+text_node[0].firstChild.nodeValue + '</font></div><br /><img src="img/hr.jpg" style="float:left; width:340px; height:3px; margin-top:6px; margin-bottom:6px;" />';
+                chat_div.scrollTop = chat_div.scrollHeight;
+                lastMessage = (message_nodes[i].getAttribute('id'));
+                playsound();
+            }
+            ;
+            mTimer = setTimeout('getChatText();',2000); //Refresh our chat in 2 seconds
+        }
+    }
+    //This functions handles when the user presses enter.  Instead of submitting the form, we
+    //send a new message to the server and return false.
+    function blockSubmit() {
+        sendChatText();
+        return false;
+    }
+    //This cleans out the database so we can start a new chat session.
+    function resetChat() {
+        if (sendReq.readyState == 4 || sendReq.readyState == 0) {
+            sendReq.open("POST", 'getChat.php?chat=4d337b537f5868c145780f305e81337b&last=' + lastMessage, true);
+            sendReq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            sendReq.onreadystatechange = handleResetChat;
+            var param = 'action=reset';
+            sendReq.send(param);
+            document.getElementById('txt_message').value = '';
+        }
+    }
+    //This function handles the response after the page has been refreshed.
+    function handleResetChat() {
+        document.getElementById('div_chat').innerHTML = '';
+        getChatText();
+    }
+    function end()
+    {
+        alert("Thanks");
+        window.location.href="archive.php?userid=493";
+    }
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $(".menu_body").hide();
+        $(".menu_head").show();
+
+        $('.menu_head').click(function(){
+            $(".menu_body").slideToggle();
+        });
+
+    });
+
+</script>
+
+<link rel="stylesheet" href="css/css.css" type="text/css" />
+
+</head>
+<body onLoad="javascript:startChat();javascript:rima();">
+<div align="center">
+    <div  style="background-color:#f1f1ef; width:100%; height:100%;">
+
+        <div style="width:100%; background-image:url(img/bgheader.jpg); background-repeat:repeat-x; float:left;">
+            <div style = 'float:left;width:169px;display:inline'> <img src="img/logo.png" width="169" height="95" /></div>
+            <div style = 'float:left;width:333px;height:45px;display:inline;
+    color:#666666;font-family:Arial, Helvetica, sans-serif;font-size:12px;padding-top:50px;'>
+                <div id="wrapper">
+                    <div id="content">
+                    </div>
+                    <div id="wrapper">
+                        <div id="content"></div>
+                        <img src="loading.gif" id="loading" alt="loading" style="display:none;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float:left; width:100%;background-color:#f1f1ef;">
+            <div id="div_chat" style="height: 332px; width: 70%; overflow: auto; background-color:#f1f1ef; float:left; display:inline; text-align:left; padding-left:10px; border-right:1px solid #999997;margin-right:5px; ">
+            </div>
+            <div style =
+                         'float:left;display:inline;width:20%;background-image:url(img/chat/layer2/right/bg.jpg); background-repeat:repeat-y;height:332px;'>
+                <div style="width:134px; float:left;">
+                    <div style = 'float:left;height:142px;width:124px;' id="content2xx"><img src='img/admin.jpg'  />
+
+                    </div>
+                    <div id="firstpane" class="menu_list">
+                        <!-- <a href="#" class="show_hide">Show/hide</a>
+                        <div class="slidingDiv">
+                        Fill this space with really interesting content. <a href="#" class="show_hide">hide</a></div>
+                        -->    <p class="menu_head" style="margin:0px;"><img src="img/chat/layer2/right/attach.jpg" width="124" height="21"></p>
+                        <div class="menu_body">	<meta name="keywords" content="ajax,upload,ajax upload, html5 upload" />
+                            <meta name="description" content="Ajax uploader" />
+                            <meta name="author" content="AlbanX" />
+                            <script src="jslibs/shCore.js" type="text/javascript"></script>
+                            <script src="jslibs/shBrushJScript.js"  type="text/javascript" ></script>
+                            <script src="jslibs/shBrushXml.js"  type="text/javascript" ></script>
+                            <!-- SET UP AXUPLOADER  -->
+
+                            <script src="jslibs/ajaxupload.js" type="text/javascript"></script>
+                            <link rel="stylesheet" href="css/fancyTheme/style.css" type="text/css" media="all" />
+                            <!-- /SET UP AXUPLOADER  -->
+                            <link rel="stylesheet" href="css/shCore.css" type="text/css" media="all" />
+                            <link rel="stylesheet" href="css/shThemeEclipse.css" type="text/css" media="all" />
+                            <link rel="stylesheet" href="css/shCoreDefault.css" type="text/css"/>
+                            <script type="text/javascript">
+                                SyntaxHighlighter.all({toolbar:false});
+                            </script>
+                            <div id="demo1" style="width:124x;"></div>
+                            <div id="drophere" style="width:107px;height:39px;border: 1px solid;border-color:#cdcccb;background-color:#FFF;margin:0px; font-style:Arial; font-size:11px;">Drag Files here</div>
+                            <script type="text/javascript">
+                                $('#demo1').ajaxupload({
+                                    url:'upload3.php',
+                                    remotePath:'files/',
+                                    dropArea:'#drophere'
+                                });
+                            </script></div></div>
+                    <div> <a href = '#'><img src="img/chat/layer2/right/email.jpg" width="124" height="27" style = 'cursor:pointer;' border = 0/></a></div>
+                    <div> <img src="img/chat/layer2/right/print.jpg" width="124" height="23" onClick = 'window.print();' style = 'cursor:pointer;' border =0/></div>
+                    <div> <a href = 'rate.php?namer=saeed&typ=admin&adminid=59&userid=493'><img src="img/chat/layer2/right/rate.jpg" width="124" height="27" border = 0/></a></div>
+                    <div id="endbtn"><a href="archive.php?typ=admin&sess=4d337b537f5868c145780f305e81337b&namer=saeed" ><img src="img/endbtn.png" width="64" height="10" border="0"></a></div>
+
+                </div>
+            </div>
+        </div>
+        <div style="display:inline;float:left;width:100%;text-align:left; background-color:#f1f1ef;">
+            <form id="frmmain" name="frmmain" onSubmit="return blockSubmit();">
+                <input type="hidden" name="typ" id="typ" value="admin"  />
+                <input type="hidden" name="sess" id="sess" value="4d337b537f5868c145780f305e81337b"  />
+                <input type="hidden" name="namer" id="namer" value="saeed"  />
+                <textarea  id="txt_message" name="txt_message" style="width: 300px;width:70%;height:87px; padding-top:10px;padding-left:8px;border:0px;border:1px solid #999; border-radius:10px; background-color:#f5f5f4;margin-left:3px;outline:none;" /></textarea>
+                <input type="button" name="btn_send_chat" id="btn_send_chat" value="" onClick="javascript:sendChatText();" style="width:61px;height:31px;background-image:url(img/chat/layer2/right/send1.jpg);border:0px;margin-left:5px; margin-top:40px; z-index:800000;" />
+            </form>
+            <script type="text/javascript">
+                jQuery('textarea').keydown(function(event) {
+                    if (event.keyCode == 13) {
+                        playsound();
+
+                        sendChatText();
+                        return false;
+                    }
+                });
+            </script>
+
+        </div>
+        <img src="img/sep.jpg" width="415" height="1" style="margin-top:10px; margin-bottom:10px;" />
+        <div id = 'layer3'> All rights reserved <a href="http://www.ositchat.com" target="_new" class="rights">OSITCHAT</a></div>
+
+
+    </div>
+</div></div>
+</body>
+
+</html>

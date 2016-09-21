@@ -1,0 +1,83 @@
+#LogInArea{
+    width: 200px;
+    background: #ccccff;
+}
+#UserName{
+    width: 190px;
+}
+#Password{
+    width: 190px;
+}
+/*#ChatContainer{*/
+    /**/
+/*}*/
+#ChatArea{
+    width: 650px;
+    height: 500px;
+    padding-bottom: 50px;
+    border: solid;
+    border-color: #111111;
+    margin-top: 25px;
+    background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#7da6cd, #5d7e9d);
+    border-left: 1px solid #496177;
+    border-right: 1px solid #7193b0;
+    border-top: 1px solid #5e7d97;
+    border-bottom: 1px solid #415c77;
+    box-shadow: inset 0 1px 0 #81a8c6;
+}
+#Contact{
+    float: left;
+    text-align: center;
+    width: 200px;
+    height: 400px;
+    margin-top: 25px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+#ChatBox{
+    float: left;
+    display: inline;
+}
+#ReceiveMessage{
+    float: left;
+    width: 400px;
+    height: 400px;
+    margin-top: 25px;
+    margin-left: 25px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background: linear-gradient(#e6e6e6 0, #fff 50px);
+    background: -o-linear-gradient(#e6e6e6  0, #fff 50px);
+    background: -ms-linear-gradient(#e6e6e6  0, #fff 50px);
+    background: -moz-linear-gradient(#e6e6e6 0, #fff 50px);
+    background: -webkit-linear-gradient(#e6e6e6 0, #fff 50px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: scroll;
+    /*padding-left: 100px;*/
+}
+#Message{
+    width: 400px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+#SendButton{
+    margin-top: 10px;
+    margin-left: 25px;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.0/themes/cupertino/jquery-ui.css'>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js'></script>
+    <script src='../scripts/strophe.js'></script>
+    <script src='../scripts/flXHR.js'></script>
+    <script src='../scripts/strophe.flxhr.js'></script>
+
+    <link rel='stylesheet' href='test.css'>
+    <script src='test.js'></script>
+</head>
+<body>
+<div id="LogInArea">
+    <div>
+        User Name
+        <input id="UserName" type="text">
+    </div>
+    <div>
+        Password
+        <input id="Password" type="password">
+    </div>
+    <div>
+        <button id="LogIn">Log In</button>
+    </div>
+</div>
+    <div id="ChatArea">
+        <div id="ChatBox">
+            <div id="Name">
+            </div>
+            <div id="ReceiveMessage">
+            </div>
+            <div id="SendMessage">
+                <textarea id="TextAreaMsg" rows="4" cols="48">
+                </textarea>
+            </div>
+            <div id="SendButton"><button id="Send">Send</button></div>
+        </div>
+        <div id="Contact">
+            <div>Contact</div>
+            <div id="ContactList"></div>
+        </div>
+    </div>
+</body>
+</html>

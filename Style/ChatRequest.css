@@ -1,0 +1,64 @@
+#Container{
+    float: left;
+    background: transparent url(../img/BackGround.JPG) repeat;
+}
+#Department{
+    float: left;
+    background: transparent url(../img/dep/bg.jpg) repeat;
+    margin-left: 20px;
+}
+#DepartmentHeader{
+}
+#DepartmentRight{
+    float: right;
+    /*margin-right: 38px;*/
+}
+#DepartmentLeft{
+    float: left;
+    margin-left: 1px;
+    /*width: 15px;*/
+}
+#DepartmentContent{
+    background: transparent url(../img/dep/bg.jpg) repeat;
+    width: 444px;
+    height: 91px;
+}
+#Footer{
+    width: 444px;
+
+    background: transparent url(../img/footerbg.jpg) repeat;
+}
+#GuestInfo{
+
+}
+
+#GuestName{
+
+}
+#NameLable{
+    float: left;
+    display: inline;
+}
+#NameInput{
+}
+
+#EmailLable{
+    float: left;
+    display: inline;
+}
+
+.dep{
+    float: left;
+    display: inline;
+    width: 200px;
+}
+input
+{
+    color: #979797;
+    height: 28px;
+    padding-left: 10px;
+    text-decoration: none;
+    background: transparent url(../img/input.jpg) repeat;
+    background-repeat: repeat-x;
+
+}
